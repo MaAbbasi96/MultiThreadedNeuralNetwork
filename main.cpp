@@ -14,6 +14,7 @@ void get_input(vector<Arguments>& input){
         file >> x >> y >> z;
         input.push_back(Arguments(x, y, z)); 
     }
+    file.close();
 }
 
 int main(){
@@ -23,6 +24,5 @@ int main(){
     cout << "Enter number of neurons in hidden layer: ";
     cin >> n;
     get_input(input);
-    // Network* net = new Network(n);
-    
+    Network* net = new Network(n);    
 }

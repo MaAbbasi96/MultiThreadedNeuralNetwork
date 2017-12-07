@@ -3,7 +3,7 @@ all: main
 main: main.o network.o layer.o neuron.o
 	g++ main.o network.o layer.o neuron.o -o program
 
-network.o: network.h layer.h network.cpp
+network.o: network.h layer.h neuron.h network.cpp
 	g++ -c network.cpp
 
 main.o: network.h main.cpp
