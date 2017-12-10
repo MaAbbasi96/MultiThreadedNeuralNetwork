@@ -6,13 +6,17 @@
 
 using namespace std;
 
-void get_input(vector<Arguments>& input){
+void get_input(vector<vector<double> >& input){
     ifstream file;
-    double x, y, z;
+    double x;
     file.open("InputFile.txt");
     while(!file.eof()){
-        file >> x >> y >> z;
-        input.push_back(Arguments(x, y, z)); 
+        vector<double> temp;
+        for(int i = 0; i < 3; i++){
+            file >> x;
+            temp.push_back(x);
+        }
+        input.push_back(temp);
     }
     file.close();
 }
@@ -20,9 +24,10 @@ void get_input(vector<Arguments>& input){
 int main(){
     int n;
     double out;
-    vector<Arguments> input;
+    vector<vector<double> > input;
     cout << "Enter number of neurons in hidden layer: ";
     cin >> n;
     get_input(input);
-    Network* net = new Network(n);    
+    Network* net = new Network(n); 
+    // net->calculate("InputFile.txt");   
 }

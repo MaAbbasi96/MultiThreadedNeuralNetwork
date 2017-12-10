@@ -4,20 +4,19 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include "layer.h"
 #include "neuron.h"
 
 class Network{
     public:
         Network(int h);
-        double calculate(double x, double y, double z);
+        double calculate(std::string fileName);
     private:
         void get_info();
-        std::vector<double> biases, outputWeights;
-        std::vector<Arguments> hiddenLayerWeights;
+        void make_layers();
+        std::vector<double> bias;
+        std::vector<std::vector<double> > weight;
         int hiddenLayerSize;
-        double outputBias;
-        Layer* hiddenLayer;
+        std::vector<Neuron*> hiddenNeuron;
         Neuron* output;
         Neuron* input;
 };
