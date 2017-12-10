@@ -3,6 +3,11 @@
 
 using namespace std;
 
+sem_t semaphore[4];
+vector<vector<long double> > inputData;
+long double memory1;
+vector<long double> memory2;
+
 void Network::get_info(){
     string gbg;
     long double x, y, z;
@@ -55,12 +60,32 @@ void Network::make_layers(){
 
 Network::Network(int h, const vector<activationFunc>& _actFunc){
     hiddenLayerSize = h;
+    for(int i = 0; i < h; i++)
+        memory2.push_back(0);
     for(int i = 0; i < _actFunc.size(); i++)
         actFunc.push_back(_actFunc[i]);
     get_info();
     make_layers();
 }
 
-void Network::calculate(const vector<vector<long double> >& input){
+void* Network::input_layer_calc(void* arg){
 
+}
+
+void* Network::hidden_layer_calc(void* arg){
+    
+}
+
+void* Network::output_layer_calc(void* arg){
+    
+}
+
+void Network::calculate(const vector<vector<long double> >& input){
+    int gbg;
+    pthread_t thread[hiddenLayerSize+2];
+    gbg = pthread_create(&thread[0], NULL, input_layer_calc, inputNeuron);
+    gbg = pthread_create(&thread[hiddenLayerSize+1], NULL, output_layer_calc, outputNeuron);
+    for(int i = 0; i < hiddenLayerSize; i++)
+        gbg = pthread_create(&thread[i+1], NULL, hidden_layer_calc, hiddenNeuron[i]);
+    
 }

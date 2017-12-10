@@ -15,6 +15,9 @@ class Network{
     private:
         void get_info();
         void make_layers();
+        static void* input_layer_calc(void* arg);
+        static void* hidden_layer_calc(void* arg);
+        static void* output_layer_calc(void* arg);
         std::vector<long double> bias;
         std::vector<std::vector<long double> > weights;
         int hiddenLayerSize;
