@@ -42,5 +42,5 @@ int main(){
     cin >> n;
     get_input(input);
     Network* net = new Network(n, actFunc); 
-    // net->calculate("InputFile.txt");   
+    net->calculate(input);
 }

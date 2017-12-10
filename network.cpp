@@ -1,4 +1,5 @@
 #include "network.h"
+#include <iostream> //#TODO remove it :D
 
 using namespace std;
 
@@ -52,7 +53,7 @@ void Network::make_layers(){
         hiddenNeuron.push_back(new Neuron(bias[i], weights[i], actFunc[1]));
 }
 
-Network::Network(int h, vector<activationFunc>& _actFunc){
+Network::Network(int h, const vector<activationFunc>& _actFunc){
     hiddenLayerSize = h;
     for(int i = 0; i < _actFunc.size(); i++)
         actFunc.push_back(_actFunc[i]);
@@ -60,6 +61,6 @@ Network::Network(int h, vector<activationFunc>& _actFunc){
     make_layers();
 }
 
-long double calculate(string fileName){
-    
+void Network::calculate(const vector<vector<long double> >& input){
+
 }

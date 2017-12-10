@@ -1,7 +1,7 @@
 all: main
 
 main: main.o network.o neuron.o
-	g++ main.o network.o neuron.o -o program
+	g++ main.o network.o neuron.o -lpthread -o program
 
 network.o: network.h neuron.h network.cpp
 	g++ -c network.cpp

@@ -4,12 +4,14 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <pthread.h>
+#include <semaphore.h>
 #include "neuron.h"
 
 class Network{
     public:
-        Network(int h, std::vector<activationFunc>& _actFunc);
-        long double calculate(std::string fileName);
+        Network(int h, const std::vector<activationFunc>& _actFunc);
+        void calculate(const std::vector<std::vector<long double> >& input);
     private:
         void get_info();
         void make_layers();
