@@ -22,12 +22,26 @@ void get_input(vector<vector<long double> >& input){
     file.close();
 }
 
-long double f1(long double input){
+vector<long double> f1(const vector<long double>& input){
     return input;
 }
 
-long double f2(long double input){
-    return tanh(input);
+vector<long double> f3(const vector<long double>& input){
+    vector<long double> res;
+    long double sum = 0;
+    for(int i = 0; i < input.size(); i++)
+        sum += input[i];
+    res.push_back(sum);
+    return res;
+}
+
+vector<long double> f2(const vector<long double>& input){
+    vector<long double> res;
+    long double sum = 0;
+    for(int i = 0; i < input.size(); i++)
+        sum += input[i];
+    res.push_back(tanh(sum));
+    return res;
 }
 
 int main(){
@@ -37,7 +51,7 @@ int main(){
     vector<activationFunc> actFunc;
     actFunc.push_back(f1);
     actFunc.push_back(f2);
-    actFunc.push_back(f1);
+    actFunc.push_back(f3);
     cout << "Enter number of neurons in hidden layer: ";
     cin >> n;
     get_input(input);

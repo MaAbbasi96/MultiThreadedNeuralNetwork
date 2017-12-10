@@ -9,12 +9,10 @@ Neuron::Neuron(long double b, const std::vector<long double>& w, activationFunc 
         weight.push_back(w[i]);
 }
 
-long double Neuron::calculate(const std::vector<long double> input){
-    long double sum = 0;
-    if(input.size() != weight.size())
-        return -1;
-    for(int i = 0; i < weight.size(); i++)
-        sum += input[i] * weight[i];
-    sum += bias;
-    return (*actFunc)(sum);
+vector<long double> Neuron::calculate(const std::vector<long double> input){
+    vector<long double> res;
+    for(int i = 0; i < input.size(); i++)
+        res.push_back(weight[i]*input[i]);
+    res.push_back(bias);
+    return (*actFunc)(res);
 }
