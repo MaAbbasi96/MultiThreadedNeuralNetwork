@@ -3,14 +3,15 @@
 
 #include <vector>
 
-typedef double (*activationFunc)(double input);
+typedef long double (*activationFunc)(long double input);
 
 class Neuron{
     public:
-        
+        Neuron(long double b, std::vector<long double>& w, activationFunc af);
     private:
-        std::vector<double> weight;
-        double bias;
+        std::vector<long double> weight;
+        long double bias;
+        activationFunc actFunc;
 };
 
 #endif

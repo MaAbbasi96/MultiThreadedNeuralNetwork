@@ -4,14 +4,14 @@ using namespace std;
 
 void Network::get_info(){
     string gbg;
-    double x, y, z;
-    vector<double> temp;
+    long double x, y, z;
+    vector<long double> temp;
 
     // input neuron initialize
     bias.push_back(0);
     for(int i = 0; i < 3; i++)
         temp.push_back(1);
-    weight.push_back(temp);
+    weights.push_back(temp);
     temp.clear();
 
     // hidden neurons initialize
@@ -28,7 +28,7 @@ void Network::get_info(){
         temp.push_back(x);
         temp.push_back(y);
         temp.push_back(z);
-        weight.push_back(temp);
+        weights.push_back(temp);
         temp.clear();
     }
 
@@ -41,12 +41,15 @@ void Network::get_info(){
         file >> x;
         temp.push_back(x);
     }
-    weight.push_back(temp);
+    weights.push_back(temp);
     file.close();
 }
 
 void Network::make_layers(){
-    
+    inputNeuron = new Neuron(bias[0], weights[0], actFunc[0]);
+    outputNeuron = new Neuron(bias[bias.size()-1], weights[weights.size()-1], actFunc[2]);
+    for(int i = 1; i <= hiddenLayerSize; i++)
+        hiddenNeuron.push_back(new Neuron(bias[i], weights[i], actFunc[1]));
 }
 
 Network::Network(int h, vector<activationFunc>& _actFunc){
@@ -57,6 +60,6 @@ Network::Network(int h, vector<activationFunc>& _actFunc){
     make_layers();
 }
 
-double calculate(string fileName){
+long double calculate(string fileName){
     
 }

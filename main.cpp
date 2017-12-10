@@ -7,12 +7,12 @@
 
 using namespace std;
 
-void get_input(vector<vector<double> >& input){
+void get_input(vector<vector<long double> >& input){
     ifstream file;
-    double x;
+    long double x;
     file.open("InputFile.txt");
     while(!file.eof()){
-        vector<double> temp;
+        vector<long double> temp;
         for(int i = 0; i < 3; i++){
             file >> x;
             temp.push_back(x);
@@ -22,18 +22,18 @@ void get_input(vector<vector<double> >& input){
     file.close();
 }
 
-double f1(double input){
+long double f1(long double input){
     return input;
 }
 
-double f2(double input){
+long double f2(long double input){
     return tanh(input);
 }
 
 int main(){
     int n;
-    double out;
-    vector<vector<double> > input;
+    long double out;
+    vector<vector<long double> > input;
     vector<activationFunc> actFunc;
     actFunc.push_back(f1);
     actFunc.push_back(f2);

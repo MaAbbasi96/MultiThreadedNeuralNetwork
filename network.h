@@ -9,16 +9,16 @@
 class Network{
     public:
         Network(int h, std::vector<activationFunc>& _actFunc);
-        double calculate(std::string fileName);
+        long double calculate(std::string fileName);
     private:
         void get_info();
         void make_layers();
-        std::vector<double> bias;
-        std::vector<std::vector<double> > weight;
+        std::vector<long double> bias;
+        std::vector<std::vector<long double> > weights;
         int hiddenLayerSize;
         std::vector<Neuron*> hiddenNeuron;
-        Neuron* output;
-        Neuron* input;
+        Neuron* outputNeuron;
+        Neuron* inputNeuron;
         std::vector<activationFunc> actFunc; 
 };
 
