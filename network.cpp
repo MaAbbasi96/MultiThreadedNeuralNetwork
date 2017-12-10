@@ -117,7 +117,7 @@ void* Network::output_layer_calc(void* arg){
     }
 }
 
-void Network::calculate(const vector<vector<long double> >& input){
+vector<long double> Network::calculate(const vector<vector<long double> >& input){
     int gbg;
     for(int i = 0; i < input.size(); i++)
         inputData.push_back(input[i]);
@@ -132,4 +132,5 @@ void Network::calculate(const vector<vector<long double> >& input){
     }
     for(int i = 0; i < hiddenLayerSize+2; i++)
         pthread_join(thread[i], NULL);
+    return memory3;
 }

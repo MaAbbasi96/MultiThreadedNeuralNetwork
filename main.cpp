@@ -44,9 +44,13 @@ vector<long double> f2(const vector<long double>& input){
     return res;
 }
 
+void print_vector(const vector<long double>& vec){
+    for(int i = 0; i < vec.size(); i++)
+        cout << vec[i] << endl;
+}
+
 int main(){
     int n;
-    long double out;
     vector<vector<long double> > input;
     vector<activationFunc> actFunc;
     actFunc.push_back(f1);
@@ -56,5 +60,6 @@ int main(){
     cin >> n;
     get_input(input);
     Network* net = new Network(n, actFunc); 
-    net->calculate(input);
+    vector<long double> out = net->calculate(input);
+    print_vector(out);
 }
