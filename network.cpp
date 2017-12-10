@@ -49,10 +49,12 @@ void Network::make_layers(){
     
 }
 
-Network::Network(int h){
+Network::Network(int h, vector<activationFunc>& _actFunc){
     hiddenLayerSize = h;
+    for(int i = 0; i < _actFunc.size(); i++)
+        actFunc.push_back(_actFunc[i]);
     get_info();
-    // make_layers();
+    make_layers();
 }
 
 double calculate(string fileName){

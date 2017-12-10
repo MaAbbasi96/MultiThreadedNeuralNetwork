@@ -8,7 +8,7 @@
 
 class Network{
     public:
-        Network(int h);
+        Network(int h, std::vector<activationFunc>& _actFunc);
         double calculate(std::string fileName);
     private:
         void get_info();
@@ -19,6 +19,7 @@ class Network{
         std::vector<Neuron*> hiddenNeuron;
         Neuron* output;
         Neuron* input;
+        std::vector<activationFunc> actFunc; 
 };
 
 #endif
