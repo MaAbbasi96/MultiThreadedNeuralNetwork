@@ -111,7 +111,6 @@ void* Network::output_layer_calc(void* arg){
             sem_wait(&semaphore[2]);
         }
         memory3.push_back(neuron->calculate(memory2)[0]);
-        printf("%Lf\n", memory3[memory3.size()-1]);
         for(int j = 0; j < hls; j++)
             sem_post(&semaphore[3]);
     }
@@ -133,4 +132,19 @@ vector<long double> Network::calculate(const vector<vector<long double> >& input
     for(int i = 0; i < hiddenLayerSize+2; i++)
         pthread_join(thread[i], NULL);
     return memory3;
+}
+
+vector<long double> Network::calculate_serial(const std::vector<std::vector<long double> >& input){
+    vector<long double> res;
+    for(int i = 0; i < input.size(); i++){
+        vector<long double> temp = inputNeuron->calculate(input[i]);
+        vector<long double> hidLayIn;
+        for(int k = 0; k < temp.size()-1; k++)
+            hidLayIn.push_back(temp[k]);
+        vector<long double> hidLayOut;
+        for(int j = 0; j < hiddenLayerSize; j++)
+            hidLayOut.push_back(hiddenNeuron[j]->calculate(hidLayIn)[0]);
+        res.push_back(outputNeuron->calculate(hidLayOut)[0]);
+    }
+    return res;
 }
