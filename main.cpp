@@ -47,17 +47,31 @@ vector<long double> f2(const vector<long double>& input){
 }
 
 void print_vector(const vector<long double>& vec){
-    cout << setprecision(18) << fixed;
-    for(int i = 0; i < vec.size(); i++)
+    cout << setprecision(20) << fixed;
+    for(int i = 0; i < vec.size(); i++){
+        if(vec[i] > 0)
+            cout << "+";
         cout << vec[i] << endl;
+    }
 }
 
 long double function(const vector<long double>& input){
-    return input[1] + sqrt(fabs( input[1]*input[1] - 4*input[0]*input[2]))/ (2*input[0]+ sin( input[0]*M_PI));
+    return (-input[1] + sqrt(fabs(input[1]*input[1] - 4*input[0]*input[2]))/ (2*input[0]+sin(input[0]*M_PI)));
 }
 
 vector<long double> get_real_answer(const vector<vector<long double> >& input){
-    
+    vector<long double> res;
+    for(int i = 0; i < input.size(); i++)
+        res.push_back(function(input[i]));
+    return res;
+}
+
+long double get_fault(const vector<long double>& in1, const vector<long double>& in2){
+    int size = in1.size();
+    long double fault = 0;
+    for(int i = 0; i < size; i++)
+        fault += (in1[i] - in2[i]) * (in1[i] - in2[i]);
+    return sqrt(fault/(double)size);
 }
 
 int main(){
@@ -77,7 +91,11 @@ int main(){
     midTime = clock();
     vector<long double> out2 = net->calculate_serial(input);
     endTime = clock();
-    // vector<long double> ans = get_real_answer(input);
+    vector<long double> ans = get_real_answer(input);
+    cout << "Thread outputs are:\n";
     print_vector(out1);
+    cout << "Serial outputs are:\n";
+    print_vector(out2);
+    cout << "Fault is: " << get_fault(out1, ans) << endl;
     cout << "Speedup is: " << ((float)(endTime - midTime) / CLOCKS_PER_SEC) / ((float)(midTime - startTime) / CLOCKS_PER_SEC) << endl;
 }
