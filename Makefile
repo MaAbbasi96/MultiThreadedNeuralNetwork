@@ -1,12 +1,15 @@
 all: main
 
-main: main.o network.o neuron.o
-	g++ main.o network.o neuron.o -lpthread -o program
+main: main.o network.o neuron.o utils.o
+	g++ main.o network.o neuron.o utils.o -lpthread -o program
 
 network.o: network.h neuron.h network.cpp
 	g++ -c network.cpp
 
-main.o: network.h main.cpp
+utils.o: utils.h utils.cpp
+	g++ -c utils.cpp
+
+main.o: network.h utils.h main.cpp
 	g++ -c main.cpp
 
 neuron.o: neuron.h neuron.cpp
