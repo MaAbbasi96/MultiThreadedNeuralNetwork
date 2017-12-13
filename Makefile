@@ -1,4 +1,4 @@
-all: main
+all: main random
 
 main: main.o network.o neuron.o utils.o
 	g++ main.o network.o neuron.o utils.o -lpthread -o program
@@ -15,5 +15,8 @@ main.o: network.h utils.h main.cpp
 neuron.o: neuron.h neuron.cpp
 	g++ -c neuron.cpp
 
+random: randomgen.cpp
+	g++ randomgen.cpp -o randomgen && ./randomgen
+
 clean:
-	rm *.o program
+	rm *.o program randomgen

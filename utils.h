@@ -10,7 +10,7 @@
 #include <time.h>
 
 namespace utils{
-    void get_input(std::vector<std::vector<long double> >& input);
+    void get_input(std::vector<std::vector<long double> >& input, std::string fileName);
     std::vector<long double> f1(const std::vector<long double>& input);
     std::vector<long double> f3(const std::vector<long double>& input);
     std::vector<long double> f2(const std::vector<long double>& input);

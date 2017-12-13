@@ -2,10 +2,10 @@
 
 using namespace std;
 
-void utils::get_input(vector<vector<long double> >& input){
+void utils::get_input(vector<vector<long double> >& input, string fileName){
     ifstream file;
     long double x;
-    file.open("InputFile.txt");
+    file.open(fileName.c_str());
     while(!file.eof()){
         vector<long double> temp;
         for(int i = 0; i < 3; i++){

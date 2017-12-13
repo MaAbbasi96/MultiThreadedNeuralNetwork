@@ -13,7 +13,7 @@ int main(){
     actFunc.push_back(utils::f3);
     cout << "Enter number of neurons in hidden layer: ";
     cin >> n;
-    utils::get_input(input);
+    utils::get_input(input, "InputFile2.txt");
     Network* net = new Network(n, actFunc);
     startTime = clock();
     vector<long double> out1 = net->calculate(input);
